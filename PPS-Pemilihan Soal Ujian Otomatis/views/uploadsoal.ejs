@@ -1,0 +1,107 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+    
+        <title>Draft Soal</title>
+        <style>
+            /* Modify the background color */
+         
+            .navbar-custom {
+                background-color: #013880;
+            }
+            /* Modify brand and text color */
+         
+            .navbar-custom .navbar-brand,
+            .navbar-custom .navbar-text {
+                color: whitesmoke;
+            }
+            .button1 {
+                background-color: #013880; 
+                color: whitesmoke;
+            }
+            .button2 {
+                border-color: 5px #013880;
+                background-color: white;
+                color: #013880;
+                /* padding: 14px 28px;
+                font-size: 16px; */
+                cursor: pointer;
+            }
+
+            /* Blue */
+            .success {
+            border-color: #013880;
+            color: #013880;
+            }
+
+            .success:hover {
+            background-color: #013880;
+            color: white;
+            }
+            div.card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }               
+        </style>
+    </head>
+
+    <nav class="navbar navbar-expand-sm navbar-custom justify-content-end">
+        <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" style="color: whitesmoke"; href="#">myITS classroom</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a class="nav-link" style="color: whitesmoke"; href="#">Nama Dosen Pengampu</a></li>
+                <li class="nav-item">
+                    <iconify-icon icon="gridicons:user-circle" style="color: #c3cfd9;" width="35" height="35"></iconify-icon>
+                </li>  
+            </ul>
+          </div>
+    </nav>
+
+    <body style="background-color: F1F4F5;">
+        <div class="container">
+            <div class="row pt-3 text-xs font-bold">
+                <div class="col-lg-12">
+                    <p style="color: #013880;"><a href="/tampilansoal" style="color: #013880;">Draft Soal</a> / <a href="/tampilanpaketsoal" style="color:#013880;">Unggah Soal</a></p>
+                </div>
+            </div>
+            <div class="container mt-3">
+            </div>
+            <div class="row mb-3 mt-5">
+                <div class="col-lg-10">
+                    <h4>Unggah Soal Ujian</h4>           
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-lg-12 pt-3" style="background-color: white; border-color: #c3cfd9; height: 200px;">
+                    <form action="http://localhost:3000/upload-bank-soal" method="post" enctype="multipart/form-data">
+                      <p>Custom file:</p>
+                      <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="customFile" name="bankSoalFile">
+                        <label class="custom-file-label" for="customFile">Pilih file</label>
+                      </div>
+                      <div class="mt-3">
+                        <button type="submit" class="btn button1">Unggah</button>
+                      </div>
+                    </form>
+                </div>
+                <script>
+                    document.getElementById('bankSoalFile').onchange = function() {
+                        document.getElementById('bankSoalFile').value = this.value.split(/(\\|\/)/g).pop(); // Show only the file name
+                    };
+                    $(".custom-file-input").on("change", function() {
+                      var fileName = $(this).val().split("\\").pop();
+                      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                    });
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

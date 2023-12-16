@@ -1,0 +1,162 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+    
+        <title>Draft Soal</title>
+        
+        <style>
+
+            .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #013880;
+            overflow-x: hidden;
+            padding-top: 10px;
+            }
+
+            .sidenav a {
+            padding: 6px 6px 6px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            }
+
+            .sidenav a:hover {
+            color: #f1f1f1;
+            }
+
+            .active, .sidenav a:hover {
+            background-color: #A3B5CE;
+            color: white;
+            }
+
+            .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            }
+
+            @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+            }
+         
+            .navbar-custom {
+                background-color: #013880;
+            }
+         
+            .navbar-custom .navbar-brand,
+            .navbar-custom .navbar-text {
+                color: whitesmoke;
+            }
+
+            .button1 {
+                background-color: #013880; 
+            }
+            .button2 {
+                border-color: 5px #013880;
+                background-color: white;
+                color: #013880;
+                cursor: pointer;
+            }
+
+            .success {
+            border-color: #013880;
+            color: #013880;
+            }
+
+            .success:hover {
+            background-color: #013880;
+            color: white;
+            }
+            div.card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: left;
+            }
+                                 
+        </style>       
+    </head>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm navbar-custom justify-content-end">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a class="nav-link" style="color: whitesmoke"; href="#">Nama Dosen Pengampu</a></li>
+                <li class="nav-item">
+                    <iconify-icon icon="gridicons:user-circle" style="color: #c3cfd9;" width="35" height="35"></iconify-icon>
+                </li>  
+            </ul>
+          </div>
+    </nav>
+    
+    <div class="sidenav" >
+        <div class="container-fluid">
+            <span class="navbar-brand" style="color: whitesmoke"; href="/tampilansoal">
+                myITS classroom
+            </span>
+          </div>
+        <a class="nav-link" href="/tampilansoal" style="margin-top: 30px;">Draft Soal</a>
+        <a class="nav-link" href="/tampilanpaketsoal">Ujian</a>
+        <a class="nav-link active" href="/tampilanbabmateri">Bab Materi</a>
+    </div>
+
+    <body class="main" style="background-color: F1F4F5;"></body>
+        <div class="container-fluid">
+            <div class="container pt-3 text-xs font-bold">
+                <p style="color: #013880;"><a href="/tampilansoal" style="color: #013880;">Draft Soal</a> / <a href="/tampilanbabmateri" style="color:#013880;">Bab Materi</a></p>
+            </div>
+
+        <!-- halaman bab materi -->
+            <div class="row px-16">
+                <div class="col-lg-4" style="margin-top: 20px;">
+                    <h4>Bab Materi</h4>           
+                </div>
+                <div class="col-lg-8" style="margin-top: 20px;">           
+                </div>
+                <div class="col">
+                    <div class="card" style="background-color: whitesmoke; border-width: 2px; height: 280px;">
+                        <form method="post" action="/babmateri">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="nama_babmateri" placeholder="Bab Materi Baru ...">
+                                <div class="input-group-append">
+                                    <button class="btn button1 btn-lg active" type="submit">
+                                        <iconify-icon icon="gg:add" style="color: white;" width="24" height="24"></iconify-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="h-75 overflow-auto px-2">
+
+                            <% babmateri.forEach(function(b){ %>
+
+                            <div class="input-group">
+                                <div class="form-control"><strong><%= b.nama_babmateri %></strong></div>
+                                <div class="input-group-append">
+                                    <a href="/babmateri/<%= b.id_babmateri %>" class="btn btn-danger">
+                                        <iconify-icon icon="mdi:cancel-bold" style="color: white;" width="24" height="24"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <% }); %>
+
+                        </div>
+                    </div>
+                    <div class="pb-6"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
